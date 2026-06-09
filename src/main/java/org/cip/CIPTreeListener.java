@@ -109,8 +109,10 @@ public class CIPTreeListener implements CIPListener {
 
     @Override
     public void exitDeclStmt(CIPParser.DeclStmtContext ctx) {
-        String name = ctx.VARIABLE().toString();
-        knowledgeBase.addVariable(name);
+        for (TerminalNode varNode : ctx.VARIABLE()) {
+            String name = varNode.toString();
+            knowledgeBase.addVariable(name);
+        }
     }
 
     @Override

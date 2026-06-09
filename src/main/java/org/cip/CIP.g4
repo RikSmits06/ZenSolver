@@ -5,10 +5,10 @@ knowledgeBase : statementLine* EOF;
 statementLine : statement END_STATEMENT;
 
 statement :
-        VARIABLE 'in' expr    # assignStmt
+        VARIABLE '=' expr    # assignStmt
     |   VARIABLE '>=' expr    # geStmt
     |   VARIABLE '<=' expr    # leStmt
-    |   'var' VARIABLE        # declStmt;
+    |   'declare' VARIABLE+        # declStmt;
 
 expr :
       VARIABLE                      # variableExpr

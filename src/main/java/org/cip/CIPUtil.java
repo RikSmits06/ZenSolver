@@ -29,7 +29,6 @@ public class CIPUtil {
         ParseTreeWalker walker = new ParseTreeWalker();
         CIPTreeListener listener = new CIPTreeListener(kb);
         while (true) {
-            System.out.println(kbState);
             walker.walk(listener, tree);
             listener.ensureNoErrors();
             Map<String, Variable> newKbState = kb.stateCopy();
