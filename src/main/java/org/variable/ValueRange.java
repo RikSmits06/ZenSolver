@@ -102,4 +102,17 @@ public class ValueRange {
         }
         return false;
     }
+
+    public void mult(ValueRange right) {
+        if (this.minValue == null || right.minValue == null) {
+            this.minValue = null;
+        } else {
+            this.minValue = this.minValue.multiply(right.minValue);
+        }
+        if (this.maxValue == null || right.maxValue == null) {
+            this.maxValue = null;
+        } else {
+            this.maxValue = this.maxValue.multiply(right.maxValue);
+        }
+    }
 }

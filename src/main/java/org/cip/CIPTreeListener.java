@@ -104,15 +104,6 @@ public class CIPTreeListener implements CIPListener {
         ValueRange right = exprRange.get(ctx.expr(1));
         ValueRange newRange = new ValueRange();
 
-        if (left == null) {
-            errorMessages.add("Left side (" + ctx.expr(0).toString() + ") of + or - does not have range yet.");
-            return;
-        }
-        if (right == null) {
-            errorMessages.add("Right side (" + ctx.expr(1).toString() + ") of + or - does not have range yet.");
-            return;
-        }
-
         try {
             newRange.updateMinConstraint(left.min());
             newRange.updateMaxConstraint(left.max());
@@ -145,6 +136,46 @@ public class CIPTreeListener implements CIPListener {
             errorMessages.add(e.getMessage());
         }
         exprRange.put(ctx, range);
+    }
+
+    @Override
+    public void enterMultExpr(CIPParser.MultExprContext ctx) {
+
+    }
+
+    @Override
+    public void exitMultExpr(CIPParser.MultExprContext ctx) {
+        ValueRange left = exprRange.get(ctx.expr(0));
+        ValueRange right = exprRange.get(ctx.expr(1));
+        ValueRange newRange = new ValueRange();
+        try {
+            newRange.updateMinConstraint(left.min());
+            newRange.updateMaxConstraint(left.max());
+        } catch (InvalidConstraintException e) {
+            errorMessages.add(e.getMessage());
+        }
+        newRange.mult(right);
+        exprRange.put(ctx, newRange);
+    }
+
+    @Override
+    public void enterRangeExpr(CIPParser.RangeExprContext ctx) {
+        BigInteger start = new BigInteger(ctx.INTEGER(0).toString());
+        BigInteger end = new BigInteger(ctx.INTEGER(1).toString());
+        ValueRange range = new ValueRange();
+        try {
+            range.updateMinConstraint(start);
+            range.updateMaxConstraint(end);
+        } catch (InvalidConstraintException e) {
+            errorMessages.add(e.getMessage());
+        }
+
+        exprRange.put(ctx, range);
+    }
+
+    @Override
+    public void exitRangeExpr(CIPParser.RangeExprContext ctx) {
+
     }
 
     @Override

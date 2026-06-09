@@ -58,6 +58,20 @@ public interface CIPVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitIntegerExpr(CIPParser.IntegerExprContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code multExpr}
+	 * labeled alternative in {@link CIPParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMultExpr(CIPParser.MultExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code rangeExpr}
+	 * labeled alternative in {@link CIPParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRangeExpr(CIPParser.RangeExprContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code parenExpr}
 	 * labeled alternative in {@link CIPParser#expr}.
 	 * @param ctx the parse tree

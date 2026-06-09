@@ -8,10 +8,12 @@ statement :
     |   VARIABLE              # declStmt;
 
 expr :
-      VARIABLE              # variableExpr
-    | INTEGER               # integerExpr
-    | '(' expr ')'          # parenExpr
-    | expr ('+' | '-') expr # addSubExpr;
+      VARIABLE                      # variableExpr
+    | INTEGER                       # integerExpr
+    | '[' INTEGER ',' INTEGER ']'   # rangeExpr
+    | '(' expr ')'                  # parenExpr
+    | expr '*' expr                 # multExpr
+    | expr ('+' | '-') expr         # addSubExpr;
 
 INTEGER : '-'? DIGIT+;
 VARIABLE : LOWER_LETTER (UPPER_LETTER | LOWER_LETTER)*;

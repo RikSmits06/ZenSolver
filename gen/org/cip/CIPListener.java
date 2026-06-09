@@ -88,6 +88,30 @@ public interface CIPListener extends ParseTreeListener {
 	 */
 	void exitIntegerExpr(CIPParser.IntegerExprContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code multExpr}
+	 * labeled alternative in {@link CIPParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterMultExpr(CIPParser.MultExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code multExpr}
+	 * labeled alternative in {@link CIPParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitMultExpr(CIPParser.MultExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code rangeExpr}
+	 * labeled alternative in {@link CIPParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterRangeExpr(CIPParser.RangeExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code rangeExpr}
+	 * labeled alternative in {@link CIPParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitRangeExpr(CIPParser.RangeExprContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code parenExpr}
 	 * labeled alternative in {@link CIPParser#expr}.
 	 * @param ctx the parse tree
