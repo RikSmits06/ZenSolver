@@ -69,6 +69,40 @@ public class CIPTreeListener implements CIPListener {
     }
 
     @Override
+    public void enterGeStmt(CIPParser.GeStmtContext ctx) {
+
+    }
+
+    @Override
+    public void exitGeStmt(CIPParser.GeStmtContext ctx) {
+        String varName = ctx.VARIABLE().toString();
+        Variable variable = this.knowledgeBase.addVariable(varName);
+        ValueRange range = exprRange.get(ctx.expr());
+        try {
+            variable.updateMinConstraint(range.min());
+        } catch (InvalidConstraintException e) {
+            errorMessages.add(e.getMessage());
+        }
+    }
+
+    @Override
+    public void enterLeStmt(CIPParser.LeStmtContext ctx) {
+
+    }
+
+    @Override
+    public void exitLeStmt(CIPParser.LeStmtContext ctx) {
+        String varName = ctx.VARIABLE().toString();
+        Variable variable = this.knowledgeBase.addVariable(varName);
+        ValueRange range = exprRange.get(ctx.expr());
+        try {
+            variable.updateMaxConstraint(range.max());
+        } catch (InvalidConstraintException e) {
+            errorMessages.add(e.getMessage());
+        }
+    }
+
+    @Override
     public void enterDeclStmt(CIPParser.DeclStmtContext ctx) {
 
     }

@@ -40,6 +40,30 @@ public interface CIPListener extends ParseTreeListener {
 	 */
 	void exitAssignStmt(CIPParser.AssignStmtContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code geStmt}
+	 * labeled alternative in {@link CIPParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterGeStmt(CIPParser.GeStmtContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code geStmt}
+	 * labeled alternative in {@link CIPParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitGeStmt(CIPParser.GeStmtContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code leStmt}
+	 * labeled alternative in {@link CIPParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterLeStmt(CIPParser.LeStmtContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code leStmt}
+	 * labeled alternative in {@link CIPParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitLeStmt(CIPParser.LeStmtContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code declStmt}
 	 * labeled alternative in {@link CIPParser#statement}.
 	 * @param ctx the parse tree

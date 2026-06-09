@@ -6,6 +6,8 @@ statementLine : statement END_STATEMENT;
 
 statement :
         VARIABLE 'in' expr    # assignStmt
+    |   VARIABLE '>=' expr    # geStmt
+    |   VARIABLE '<=' expr    # leStmt
     |   'var' VARIABLE        # declStmt;
 
 expr :
@@ -23,4 +25,3 @@ UPPER_LETTER : [A-Z];
 DIGIT : [0-9];
 END_STATEMENT: '.';
 WS: [ \t\r\n] -> skip;
-COMMENT: '%' (~'%')* '%' -> skip;

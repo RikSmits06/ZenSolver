@@ -13,6 +13,14 @@ import java.util.Objects;
 public class Main {
 
     static void main() throws URISyntaxException, IOException, CombinedException {
+//        Map<String, ValueRange> a = new HashMap<>();
+//        a.put("a", new ValueRange());
+//        a.put("b", new ValueRange());
+//        Map<String, ValueRange> b = new HashMap<>();
+//        b.put("a", new ValueRange());
+//        b.put("b", new ValueRange());
+//        boolean eq = a.equals(b);
+//        System.out.println(eq);
         Path path = Paths.get(Objects.requireNonNull(Thread.currentThread().getContextClassLoader().getResource("testBase.txt")).toURI());
         KnowledgeBase kb = CIPUtil.knowledgeBaseFromFile(path);
         System.out.println(kb);

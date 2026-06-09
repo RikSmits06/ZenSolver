@@ -30,6 +30,20 @@ public interface CIPVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAssignStmt(CIPParser.AssignStmtContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code geStmt}
+	 * labeled alternative in {@link CIPParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGeStmt(CIPParser.GeStmtContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code leStmt}
+	 * labeled alternative in {@link CIPParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLeStmt(CIPParser.LeStmtContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code declStmt}
 	 * labeled alternative in {@link CIPParser#statement}.
 	 * @param ctx the parse tree

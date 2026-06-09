@@ -3,6 +3,7 @@ package org.variable;
 import org.exceptions.InvalidConstraintException;
 
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * Represents a range of values used for variables.
@@ -53,6 +54,10 @@ public class ValueRange {
      * @throws InvalidConstraintException When the min is bigger than the max.
      */
     public void updateMinConstraint(BigInteger newMin) throws InvalidConstraintException {
+        if (newMin == null) {
+            return;
+        }
+
         if (this.minValue == null || this.minValue.compareTo(newMin) < 0) {
             this.minValue = newMin;
             validateConstraint();
@@ -66,6 +71,10 @@ public class ValueRange {
      * @throws InvalidConstraintException When the max is bigger than the min.
      */
     public void updateMaxConstraint(BigInteger newMax) throws InvalidConstraintException {
+        if (newMax == null) {
+            return;
+        }
+
         if (this.maxValue == null || this.maxValue.compareTo(newMax) > 0) {
             this.maxValue = newMax;
             validateConstraint();
@@ -98,7 +107,8 @@ public class ValueRange {
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof ValueRange range) {
-            return this.minValue.equals(range.minValue) && this.maxValue.equals(range.maxValue);
+            return Objects.equals(this.minValue, range.minValue)
+                    && Objects.equals(this.maxValue, range.maxValue);
         }
         return false;
     }
