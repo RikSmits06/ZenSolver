@@ -1,11 +1,12 @@
 grammar CIP;
 
-knowledgeBase : statementLine*;
+knowledgeBase : statementLine* EOF;
 
 statementLine : statement END_STATEMENT;
+
 statement :
         VARIABLE 'in' expr    # assignStmt
-    |   VARIABLE              # declStmt;
+    |   'var' VARIABLE        # declStmt;
 
 expr :
       VARIABLE                      # variableExpr
@@ -18,7 +19,8 @@ expr :
 INTEGER : '-'? DIGIT+;
 VARIABLE : LOWER_LETTER (UPPER_LETTER | LOWER_LETTER)*;
 LOWER_LETTER : [a-z];
-UPPER_LETTER : [a-z];
+UPPER_LETTER : [A-Z];
 DIGIT : [0-9];
 END_STATEMENT: '.';
 WS: [ \t\r\n] -> skip;
+COMMENT: '%' (~'%')* '%' -> skip;
