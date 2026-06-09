@@ -23,5 +23,6 @@ VARIABLE : LOWER_LETTER (UPPER_LETTER | LOWER_LETTER)*;
 LOWER_LETTER : [a-z];
 UPPER_LETTER : [A-Z];
 DIGIT : [0-9];
-END_STATEMENT: '.';
-WS: [ \t\r\n] -> skip;
+END_STATEMENT : '.';
+WS : [ \t\r\n] -> skip;
+COMMENT : '%' (~'%')* '%' -> skip;
